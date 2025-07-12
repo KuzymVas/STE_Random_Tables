@@ -1,12 +1,10 @@
 {
-    "display_name": "D&D Dice",
+    "display_name": "Random Table",
     "loading_order": 5,
-    "requires": [],
-    "optional": [],
     "js": "index.js",
     "css": "style.css",
-    "author": "Cohee#1207",
-    "version": "2.0.0",
-    "homePage": "https://github.com/SillyTavern/Extension-Dice",
-    "auto_update": true
+    "author": "KuzymVas",
+    "version": "1.0.0",
+    "homePage": "https://github.com/<TBD>/Extension-Random-Table",
+    "auto_update": false
 }
