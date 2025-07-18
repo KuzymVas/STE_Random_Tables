@@ -16,6 +16,8 @@
  */
 
 import { getContext } from '../../../extensions.js';
+import { RandomTable } from './RandomTable.js';
+import { ReferenceResolver } from './ReferenceResolver.js';
 export { MODULE_NAME };
 
 const MODULE_NAME = 'random-table';
@@ -28,14 +30,38 @@ function registerRandomTableTool() {
             return;
         }
 
+        // Create tables with weights and references
+        const tablesMap = {
+            greetings: new RandomTable('greetings', [
+                { value: "Hello", weight: 1 },
+                { value: "Hi", weight: 1 },
+                { value: "Hey, ${adjective}", weight: 2 }, // Reference to adjectives
+                { value: "Howdy", weight: 1 },
+            ]),
+            colors: new RandomTable('colors', [
+                { value: "Red", weight: 1 },
+                { value: "Blue", weight: 1 },
+                { value: "Green", weight: 1 },
+                { value: "Yellow", weight: 1 },
+            ]),
+            adjectives: new RandomTable('adjectives', [
+                { value: "beautiful", weight: 1 },
+                { value: "wonderful", weight: 1 },
+                { value: "amazing ${color} thing", weight: 1 }, // Reference to colors
+            ]),
+        };
+
+        const resolver = new ReferenceResolver(tablesMap);
+
+        // Update enum and description to include adjectives
         const randomTableSchema = Object.freeze({
             $schema: 'http://json-schema.org/draft-04/schema#',
             type: 'object',
             properties: {
                 table_name: {
                     type: 'string',
-                    description: 'Name of table to select from. Valid tables: "greetings", "colors"',
-                    enum: ["greetings", "colors"]
+                    description: 'Name of table to select from. Valid tables: "greetings", "colors", "adjectives"',
+                    enum: ["greetings", "colors", "adjectives"]
                 }
             },
             required: ['table_name']
@@ -47,12 +73,13 @@ function registerRandomTableTool() {
             description: 'Selects random option from predefined table',
             parameters: randomTableSchema,
             action: async (args) => {
-                const tables = {
-                    greetings: ["Hello", "Hi", "Hey", "Howdy"],
-                    colors: ["Red", "Blue", "Green", "Yellow"]
-                };
-                const options = tables[args.table_name] || ["Option not found"];
-                return options[Math.floor(Math.random() * options.length)];
+                const table = tablesMap[args.table_name];
+                if (!table) {
+                    return `Error: Table '${args.table_name}' not found`;
+                }
+                
+                const value = table.getRandomValue();
+                return resolver.resolve(value);
             },
             formatMessage: () => '',
         });
