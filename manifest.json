@@ -2,9 +2,8 @@
     "display_name": "Random Table",
     "loading_order": 5,
     "js": "index.js",
-    "css": "style.css",
     "author": "KuzymVas",
-    "version": "0.2.0",
+    "version": "0.3.0-SNAPSHOT",
     "homePage": "https://github.com/KuzymVas/STE_Random_Tables",
     "auto_update": false
 }

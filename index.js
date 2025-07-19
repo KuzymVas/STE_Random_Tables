@@ -90,5 +90,5 @@ function registerRandomTableTool() {
 
 jQuery(async () => {
     registerRandomTableTool();
-    const settingsHtml = $(await renderExtensionTemplateAsync('random-table', 'dropdown'));
+    const settingsHtml = $(await renderExtensionTemplateAsync('third-party/STE_Random_Tables/random-table', 'dropdown'));
 });
