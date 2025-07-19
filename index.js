@@ -22,6 +22,10 @@ export { MODULE_NAME };
 
 const MODULE_NAME = 'random-table';
 
+const extensionName = "STE_Random_Tables";
+const extensionFolderPath = `scripts/extensions/third-party/${extensionName}`;
+const extensionSettings = extension_settings[extensionName];
+
 function registerRandomTableTool() {
     try {
         const { registerFunctionTool } = getContext();
@@ -91,4 +95,5 @@ function registerRandomTableTool() {
 jQuery(async () => {
     registerRandomTableTool();
     const settingsHtml = $(await renderExtensionTemplateAsync('third-party/STE_Random_Tables', 'dropdown'));
+    $("#extensions_settings").append(settingsHtml);
 });
