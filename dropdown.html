@@ -1,0 +1,52 @@
+<div class="random_table_settings">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <b data-i18n="ext_random_table_title">
+                Random Tables
+            </b>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+        </div>
+        <div class="inline-drawer-content">
+            <div class="flex-container">
+                <div id="open_random_table_editor" class="menu_button menu_button_icon" data-i18n="[title]ext_regex_new_global_script_desc" title="New global regex script">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <small data-i18n="ext_random_table_new_global_script">+ Global</small>
+                </div>
+                <div id="open_random_table_scoped_editor" class="menu_button menu_button_icon" data-i18n="[title]ext_regex_new_scoped_script_desc" title="New scoped regex script">
+                    <i class="fa-solid fa-address-card"></i>
+                    <small data-i18n="ext_random_table_new_scoped_script">+ Scoped</small>
+                </div>
+                <div id="import_random_table" class="menu_button menu_button_icon">
+                    <i class="fa-solid fa-file-import"></i>
+                    <small data-i18n="ext_random_table_import_script">Import</small>
+                </div>
+                <input type="file" id="import_random_table_file" hidden accept="*.json" multiple />
+            </div>
+            <hr />
+            <div id="global_random_tables_block" class="padding5">
+                <div>
+                    <strong data-i18n="ext_random_table_global_tables">Global Tables</strong>
+                </div>
+                <small data-i18n="ext_random_table_global_tables_desc">
+                    Available for all characters. Saved to local settings.
+                </small>
+                <div id="saved_random_tables" no-scripts-text="No tables found" data-i18n="ext_random_table_no_tables_found" class="flex-container regex-script-container flexFlowColumn">No tables found</div>
+            </div>
+            <hr />
+            <div id="scoped_random_tables_block" class="padding5">
+                <div class="flex-container alignItemsBaseline">
+                    <strong class="flex1" data-i18n="ext_random_table_scoped_tables">Scoped Tables</strong>
+                    <label id="toggle_scoped_tables" class="checkbox flex-container" for="random_table_scoped_toggle">
+                        <input type="checkbox" id="random_table_scoped_toggle" class="enable_scoped" />
+                        <span class="random-table-toggle-on fa-solid fa-toggle-on fa-lg" data-i18n="[title]ext_random_table_disallow_scoped" title="Disallow using scoped tables"></span>
+                        <span class="random-table-toggle-off fa-solid fa-toggle-off fa-lg" data-i18n="[title]ext_random_table_allow_scoped" title="Allow using scoped tables"></span>
+                    </label>
+                </div>
+                <small data-i18n="ext_random_table_scoped_tables_desc">
+                    Only available for this character. Saved to the card data.
+                </small>
+                <div id="saved_scoped_random_tables" no-scripts-text="No tables found" data-i18n="ext_random_table_no_tables_found" class="flex-container regex-script-container flexFlowColumn">No tables found</div>
+            </div>
+        </div>
+    </div>
+</div>

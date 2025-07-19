@@ -15,7 +15,7 @@
  * along with Random Table Extension.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getContext } from '../../../extensions.js';
+import { getContext, extension_settings, renderExtensionTemplateAsync, writeExtensionField  } from '../../../extensions.js';
 import { RandomTable } from './RandomTable.js';
 import { ReferenceResolver } from './ReferenceResolver.js';
 export { MODULE_NAME };
@@ -88,6 +88,7 @@ function registerRandomTableTool() {
     }
 }
 
-jQuery(() => {
+jQuery(async () => {
     registerRandomTableTool();
+    const settingsHtml = $(await renderExtensionTemplateAsync('random-table', 'dropdown'));
 });
